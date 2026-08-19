@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useInViewAnimation } from "../hooks/useInViewAnimation";
 import { ArrowRight, Wand2, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 import { GeometricPattern } from "./GeometricPattern";
+import { VideoBackground } from "./VideoBackground";
 
 const GALLERY_IMAGES = [
   "/images/gallery/gallery-01.jpg",
@@ -19,19 +20,9 @@ export function InfoSection() {
 
   return (
     <section ref={ref} className="relative min-h-screen flex overflow-hidden bg-solar-dark">
-      <div className="absolute inset-0 w-full h-full">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-40"
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4"
-        />
-        <div className="absolute inset-0 bg-solar-dark/60" />
-        <div className="absolute inset-0 pointer-events-none opacity-25">
-          <GeometricPattern type="diamond-grid" color="rgba(255,215,0,0.3)" size={100} />
-        </div>
+      <VideoBackground overlayOpacity={0.5} />
+      <div className="absolute inset-0 pointer-events-none opacity-25">
+        <GeometricPattern type="diamond-grid" color="rgba(255,215,0,0.3)" size={100} />
       </div>
 
       <div className="relative z-10 flex flex-col lg:flex-row w-full">

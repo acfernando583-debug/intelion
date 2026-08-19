@@ -4,6 +4,7 @@ import { useInViewAnimation } from "../hooks/useInViewAnimation";
 import { useTypewriter } from "../hooks/useTypewriter";
 import { Particles } from "./Particles";
 import { GeometricPattern } from "./GeometricPattern";
+import { VideoBackground } from "./VideoBackground";
 import panelArt from "../assets/img/panel 1.png";
 
 const HERO_WORDS = ["Inteligente", "Sostenible", "Confiable", "Eficiente"];
@@ -127,30 +128,17 @@ export function HeroSection() {
   return (
     <section className="flex-1 pt-20 pb-24 md:pb-40 flex items-center overflow-visible">
       <div
-        className="relative w-full overflow-hidden hero-gradient h-[85vh] md:h-screen"
+        className="relative w-full overflow-hidden h-[85vh] md:h-screen"
       >
-        <div
-          className="parallax-layer absolute inset-0"
-          style={{ transform: `translate3d(0, ${scrollY * 0.04}px, 0) scale(1.12)` }}
-        >
-          <img
-            src="/images/hero-solar-farm.jpg"
-            alt=""
-            aria-hidden="true"
-            className="w-full h-full object-cover opacity-45"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-solar-dark via-solar-dark/60 to-solar-dark/70" />
-        <div className="absolute inset-0 opacity-30 pointer-events-none">
-          <GeometricPattern type="hex-grid" color="rgba(255,215,0,0.15)" size={80} />
-        </div>
+        <VideoBackground overlayOpacity={0.25} />
+        <div className="absolute inset-0 bg-gradient-to-t from-solar-dark/60 via-solar-dark/25 to-solar-dark/10" />
         <div
           className="parallax-layer absolute inset-0"
           style={{ transform: `translate3d(0, ${scrollY * 0.08}px, 0)` }}
         >
           <Particles />
           <div
-            className="absolute inset-0 opacity-40"
+            className="absolute inset-0 opacity-20"
             style={{
               backgroundImage:
                 "radial-gradient(circle at 20% 50%, rgba(255,214,0,0.2) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,214,0,0.15) 0%, transparent 40%), radial-gradient(circle at 40% 80%, rgba(0,100,180,0.2) 0%, transparent 50%)",
@@ -197,17 +185,17 @@ export function HeroSection() {
           <div className="logo animate-float flex justify-center">
             <LogoIcon className="w-32 h-32 md:w-56 md:h-56 lg:w-64 lg:h-64" />
           </div>
-          <div
-            className="parallax-layer pointer-events-none select-none hidden md:block"
-            style={{ transform: `translate3d(0, ${scrollY * -0.15}px, 0)` }}
-          >
-            <img
-              src={panelArt}
-              alt=""
-              aria-hidden="true"
-              className="w-[380px] md:w-[460px] lg:w-[560px] xl:w-[640px] h-auto drop-shadow-[0_40px_70px_rgba(0,20,40,0.5)]"
-            />
-          </div>
+        </div>
+        <div
+          className="parallax-layer pointer-events-none select-none hidden md:block absolute bottom-0 right-0"
+          style={{ transform: `translate3d(0, ${scrollY * -0.15}px, 0)` }}
+        >
+          <img
+            src={panelArt}
+            alt=""
+            aria-hidden="true"
+            className="w-[280px] md:w-[360px] lg:w-[440px] xl:w-[520px] h-auto drop-shadow-[0_40px_70px_rgba(0,20,40,0.5)]"
+          />
         </div>
       </div>
     </section>
