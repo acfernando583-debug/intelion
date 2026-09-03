@@ -12,7 +12,7 @@ const HERO_WORDS = ["Inteligente", "Sostenible", "Confiable", "Eficiente"];
 export function LogoIcon({ className = "" }: { className?: string }) {
   return (
     <img
-      src="/images/intelion-logo.png"
+      src="/images/logo.svg"
       alt="INTELION"
       className={className}
     />
