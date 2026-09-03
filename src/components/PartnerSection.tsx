@@ -6,7 +6,7 @@ export function PartnerSection() {
   const { ref, inView } = useInViewAnimation();
 
   return (
-    <section ref={ref} className="bg-solar-gray px-6 py-24 relative overflow-hidden">
+    <section id="nosotros" ref={ref} className="bg-solar-gray px-6 py-24 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-solar-yellow/5 rounded-full blur-3xl" />
       </div>
@@ -31,7 +31,7 @@ export function PartnerSection() {
             Analizamos su necesidad energética y diseñamos la solución que mejor se adapte a su proyecto. Energía solar inteligente para hogares, edificios e industria.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button variant="primary" arrow className="mx-auto btn-hover">
+            <Button variant="primary" arrow className="mx-auto btn-hover" onClick={() => window.open("https://wa.me/573134985230", "_blank")}>
               Solicitar diagnóstico gratuito
             </Button>
             <Button

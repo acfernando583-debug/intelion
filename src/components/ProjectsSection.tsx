@@ -15,7 +15,7 @@ const PROJECTS = [
     image: "/images/project-laboratorios.jpg",
   },
   {
-    name: "Plantas de Producción",
+    name: "Granjas solares",
     description:
       "Reducción de costos energéticos y ventaja competitiva con energía solar de gran escala.",
     image: "/images/project-plantas.jpg",
@@ -26,7 +26,7 @@ export function ProjectsSection() {
   const { ref } = useInViewAnimation();
 
   return (
-    <section ref={ref} className="bg-solar-gray px-6 py-12">
+    <section id="solutions" ref={ref} className="bg-solar-gray px-6 py-12">
       <div className="max-w-[1200px] mx-auto flex flex-col gap-16 md:gap-20">
         {PROJECTS.map((project, i) => (
           <ProjectItem key={project.name} project={project} index={i} />

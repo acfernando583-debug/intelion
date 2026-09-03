@@ -25,7 +25,7 @@ export function VideoGallery() {
   }, [active]);
 
   return (
-    <section ref={ref} className="bg-solar-dark py-24 px-6 relative overflow-hidden">
+    <section id="video-gallery" ref={ref} style={{ display: 'none' }} className="bg-solar-dark py-24 px-6 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-20">
         <div
           className="absolute inset-0"
