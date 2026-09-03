@@ -14,14 +14,14 @@ const PRODUCTS = [
     title: "Inversores",
     description:
       "Conversión inteligente de energía DC a AC con marcas líderes en el mercado.",
-    image: "/images/products/product-inverter.jpg",
+    image: "/images/inversores.jpg",
   },
   {
     number: "03",
     title: "Baterías",
     description:
       "Almacenamiento de energía para respaldo y autonomía en sistemas híbridos y aislados.",
-    image: "/images/products/product-battery.jpg",
+    image: "/images/baterias.jpg",
   },
 ];
 
@@ -29,7 +29,7 @@ export function TestimonialCarousel() {
   const { ref, inView } = useInViewAnimation();
 
   return (
-    <section id="sec-011" ref={ref} className="bg-white px-6 py-24 relative overflow-hidden">
+    <section id="tecnología" ref={ref} className="bg-white px-6 py-24 relative overflow-hidden">
       <div className="max-w-[1440px] mx-auto relative">
         <div className={`px-0 mb-16 ${inView ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: "0.1s" }}>
           <div className="inline-flex items-center gap-3 mb-4">
@@ -58,15 +58,15 @@ export function TestimonialCarousel() {
                   <h3 className="text-3xl font-bold text-white tracking-tight leading-tight mb-3">{product.title}</h3>
                   <p className="text-white/90 text-sm leading-relaxed">{product.description}</p>
                 </div>
-                <div className="inline-flex items-center gap-2 text-sm font-medium text-white mt-6">
-                  <span className="relative">
-                    <span className="relative z-10">Explorar</span>
-                    <span className="absolute bottom-0 left-0 h-[1px] bg-solar-yellow transition-all duration-300 group-hover:w-full" style={{ width: "0px" }} />
-                  </span>
-                  <span>
-                    <ArrowRight className="w-4 h-4 text-solar-yellow transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                </div>
+                <span
+                  className="inline-flex items-center gap-2 text-sm font-medium text-white mt-6 cursor-pointer"
+                  onClick={() => window.open("https://wa.me/573134985230", "_blank")}
+                >
+                  <span>Explorar</span>
+                <span>
+                  <ArrowRight className="w-4 h-4 text-solar-yellow transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+              </span>
               </div>
             </div>
           ))}

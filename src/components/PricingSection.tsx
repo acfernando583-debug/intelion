@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useInViewAnimation } from "../hooks/useInViewAnimation";
 import { GeometricPattern } from "./GeometricPattern";
+import { Search, PenTool, Wrench, Activity } from "lucide-react";
 
 const STEP_COLORS = [
   { soft: "rgba(255,183,77,0.25)", border: "rgba(255,183,77,0.6)", glow: "rgba(255,183,77,0.35)", shape: "60% 40% 70% 30% / 50% 60% 40% 50%", accent: "#FFB74D" },
@@ -15,33 +16,42 @@ const STEPS = [
     title: "Análisis y Diagnóstico",
     description:
       "Evaluación del consumo energético, análisis técnico del sitio e identificación de oportunidades de ahorro.",
+    info: "Revisión completa del historial de consumo y sitio. Identificamos oportunidades de ahorro de hasta 70% en tu factura eléctrica.",
+    icon: <Search className="w-6 h-6 text-solar-yellow" />,
   },
   {
     number: "02",
     title: "Diseño e Ingeniería",
     description:
       "Dimensionamiento del sistema, selección de tecnología adecuada, evaluación técnica y económica.",
+    info: "Cálculo preciso del sistema con software profesional. Seleccionamos la mejor combinación de paneles, inversores y baterías para ti.",
+    icon: <PenTool className="w-6 h-6 text-blue-400" />,
   },
   {
     number: "03",
     title: "Instalación Certificada",
     description:
       "Montaje profesional, pruebas de aislamiento, configuración de inversores y puesta en marcha.",
+    info: "Instalación realizada por técnicos certificados. Pruebas de calidad y puesta en marcha garantizada antes de entregarte tu sistema.",
+    icon: <Wrench className="w-6 h-6 text-green-400" />,
   },
   {
     number: "04",
     title: "Monitoreo y Soporte",
     description:
       "Seguimiento continuo del rendimiento, mantenimiento preventivo y soporte especializado.",
+    info: "Monitoreo 24/7 de tu sistema vía app. Mantenimiento predictivo y soporte técnico siempre disponible para máxima eficiencia.",
+    icon: <Activity className="w-6 h-6 text-purple-400" />,
   },
 ];
 
 export function PricingSection() {
   const { ref, inView } = useInViewAnimation();
   const [isHovering, setIsHovering] = useState(false);
+  const [selectedStep, setSelectedStep] = useState<string | null>(null);
 
   return (
-    <section ref={ref} className="bg-white px-6 py-24 relative">
+    <section id="proceso" ref={ref} className="bg-white px-6 py-24 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-solar-gray/50 to-transparent pointer-events-none" />
       <div className="absolute inset-0 flex items-center justify-center opacity-15 pointer-events-none">
         <GeometricPattern type="rect-grid" color="rgba(0,51,102,0.5)" size={100} />
@@ -97,7 +107,9 @@ export function PricingSection() {
               const color = STEP_COLORS[i];
               return (
                 <div
+                  id={`step-${step.number.toLowerCase().replace(" ", "-")}`}
                   key={step.number}
+                  onClick={() => setSelectedStep(step.number)}
                   className={`group relative rounded-[32px] p-8 md:p-10 overflow-hidden cursor-pointer ${inView ? "animate-fade-in-up" : "opacity-0"}`}
                   style={{
                     animationDelay: `${0.3 + i * 0.12}s`,
@@ -137,10 +149,10 @@ export function PricingSection() {
                     if (dot) dot.style.opacity = "1";
                   }}
                 >
-                <div
-                  className="absolute top-0 right-0 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                  style={{ backgroundColor: color.glow }}
-                />
+                  <div
+                    className="absolute top-0 right-0 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                    style={{ backgroundColor: color.glow }}
+                  />
                   <div
                     className="relative z-10 flex flex-col items-center text-center transition-all duration-500"
                     style={{ padding: "0" }}
@@ -177,6 +189,28 @@ export function PricingSection() {
               );
             })}
           </div>
+          {selectedStep && (
+            <div
+              id="step-dialog"
+              className="mt-12 max-w-3xl mx-auto p-6 bg-gradient-to-br from-solar-yellow/10 to-solar-blue/10 border border-solar-yellow/30 rounded-2xl animate-fade-in-up"
+              style={{ animationDelay: "0.2s" }}
+            >
+              <div className="flex items-start gap-4">
+                <div className="shrink-0">
+                  {STEPS.find(s => s.number === selectedStep)?.icon}
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-solar-dark font-semibold text-lg mb-2 flex items-center gap-2">
+                    {STEPS.find(s => s.number === selectedStep)?.title}
+                    <span className="text-solar-yellow">🚀</span>
+                  </h4>
+                  <p className="text-solar-dark/70 text-base leading-relaxed">
+                    {STEPS.find(s => s.number === selectedStep)?.info}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

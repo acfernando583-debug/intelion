@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ArrowRight, Quote } from "lucide-react";
+import { ArrowRight, Quote, Menu, X } from "lucide-react";
 import { useInViewAnimation } from "../hooks/useInViewAnimation";
 import { useTypewriter } from "../hooks/useTypewriter";
 import { Particles } from "./Particles";
@@ -69,6 +69,7 @@ export function Button({
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,34 +80,71 @@ export function Navbar() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 px-6 py-4 transition-all duration-300 ${
+    <nav id="navbar" className={`fixed top-0 left-0 right-0 z-50 px-6 py-4 transition-all duration-300 ${
       scrolled
-        ? "bg-solar-dark/95 backdrop-blur-md shadow-lg"
+        ? "bg-solar-dark/85 backdrop-blur-md shadow-lg"
         : "bg-white/90 backdrop-blur-md shadow-sm"
     }`}>
       <div className="flex items-center justify-between max-w-[88rem] mx-auto">
-        <div className="flex items-center gap-3">
-          <LogoIcon className="h-16 w-auto" />
-          <span className={`text-3xl font-medium tracking-tight transition-colors duration-300 ${
-            scrolled ? "text-white" : "text-solar-dark"
-          }`}>
-            INTELION
-          </span>
-        </div>
+        <LogoIcon className="h-16 w-auto" />
+        <span className={`text-3xl font-medium tracking-tight transition-colors duration-300 ${
+          scrolled ? "text-white" : "text-solar-dark"
+        }`}>
+          INTELION
+        </span>
         <div className="hidden md:flex items-center gap-8">
-          {["Nosotros", "Soluciones", "Proceso", "Tecnología", "Contacto"].map((link) => (
+          {Object.entries({
+            "Nosotros": "#info",
+            "Soluciones": "#solutions",
+            "Proceso": "#proceso",
+            "Tecnología": "#tecnología",
+            "Contacto": "#contacto",
+          }).map(([label, href]) => (
             <a
-              key={link}
-              href={`#${link.toLowerCase()}`}
+              key={label}
+              href={href}
               className={`text-base font-medium transition-colors duration-200 ${
                 scrolled ? "text-white/80 hover:text-white" : "text-solar-dark hover:text-solar-dark/70"
               }`}
             >
-              {link}
+              {label}
             </a>
           ))}
         </div>
+        <button
+          className="md:hidden p-2 rounded-full hover:bg-white/20 transition-colors"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+        >
+          {mobileOpen ? (
+            <X className={`w-6 h-6 ${scrolled ? "text-white" : "text-solar-dark"}`} />
+          ) : (
+            <Menu className={`w-6 h-6 ${scrolled ? "text-white" : "text-solar-dark"}`} />
+          )}
+        </button>
       </div>
+      {mobileOpen && (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-solar-dark/95 backdrop-blur-md shadow-lg">
+          <div className="px-6 py-4 flex flex-col gap-4">
+            {Object.entries({
+              "Nosotros": "#info",
+              "Soluciones": "#solutions",
+              "Proceso": "#proceso",
+              "Tecnología": "#tecnología",
+              "Contacto": "#contacto",
+            }).map(([label, href]) => (
+              <a
+                key={label}
+                href={href}
+                onClick={() => setMobileOpen(false)}
+                className="text-white/80 hover:text-white text-lg font-medium py-2 transition-colors"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
@@ -126,7 +164,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="flex-1 pt-20 pb-24 md:pb-40 flex items-center overflow-visible">
+    <section id="hero" className="flex-1 pt-24 pb-24 md:pb-40 flex items-center overflow-visible">
       <div
         className="relative w-full overflow-hidden h-[85vh] md:h-screen"
       >
@@ -146,7 +184,7 @@ export function HeroSection() {
           />
         </div>
         <div
-          className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 h-full p-8 pb-48 pt-[25%] md:p-12 md:pt-20 text-center md:text-left pl-[10%] md:pl-24"
+          className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 h-full p-6 pb-24 pt-16 md:p-12 md:pt-20 text-center md:text-left md:pl-24"
         >
           <div className="text-content flex flex-col items-center md:items-start text-center md:text-left">
             <h1
@@ -170,6 +208,7 @@ export function HeroSection() {
             <div className="animate-fade-in-up flex flex-wrap gap-4 justify-center md:justify-start mb-8 md:mb-12" style={{ animationDelay: "0.6s" }}>
               <Button
                 arrow
+                onClick={() => window.open("https://wa.me/573134985230", "_blank")}
                 className="bg-solar-yellow text-solar-dark text-sm md:text-lg font-medium pl-6 pr-2 py-3 md:py-3.5 rounded-full hover:bg-solar-yellow/90 btn-hover animate-pulse-glow"
               >
                 Solicitar diagnóstico
@@ -182,19 +221,19 @@ export function HeroSection() {
               </Button>
             </div>
           </div>
-          <div className="logo animate-float flex justify-center">
-            <LogoIcon className="h-32 w-auto md:h-56 md:w-auto lg:h-64 lg:w-auto" />
+          <div className="logo animate-float flex justify-center xl:mt-[-40px]">
+            <LogoIcon className="h-32 w-auto md:h-56 md:w-auto lg:h-64 lg:w-auto xl:h-48 xl:w-auto" />
           </div>
         </div>
         <div
-          className="parallax-layer pointer-events-none select-none hidden md:block absolute bottom-0 right-0"
+          className="parallax-layer pointer-events-none select-none hidden md:block absolute bottom-[-30px] md:bottom-0 right-0"
           style={{ transform: `translate3d(0, ${scrollY * -0.15}px, 0)` }}
         >
           <img
             src={panelArt}
             alt=""
             aria-hidden="true"
-            className="w-[280px] md:w-[360px] lg:w-[440px] xl:w-[520px] h-auto drop-shadow-[0_40px_70px_rgba(0,20,40,0.5)]"
+            className="w-[200px] md:w-[220px] lg:w-[320px] xl:w-[440px] h-auto drop-shadow-[0_40px_70px_rgba(0,20,40,0.5)]"
           />
         </div>
       </div>
@@ -206,7 +245,7 @@ export function QuoteSection() {
   const { ref, inView } = useInViewAnimation();
 
   return (
-    <section ref={ref} className="py-24 px-6 max-w-5xl mx-auto relative overflow-hidden">
+    <section id="quote" ref={ref} className="py-24 px-6 max-w-5xl mx-auto relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute -top-20 -left-20 w-96 h-96 bg-solar-blue/20 animate-morph-bg" style={{ animation: "morph-bg 18s ease-in-out infinite" }} />
         <div className="absolute top-40 -right-20 w-80 h-80 bg-solar-dark/15 animate-morph-bg-alt" style={{ animation: "morph-bg-alt 22s ease-in-out infinite" }} />
