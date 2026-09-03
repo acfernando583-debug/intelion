@@ -14,7 +14,7 @@ export function LogoIcon({ className = "" }: { className?: string }) {
     <img
       src="/images/logo menu.png"
       alt="INTELION"
-      className={className}
+      className={`${className} object-contain`}
     />
   );
 }
@@ -86,7 +86,7 @@ export function Navbar() {
     }`}>
       <div className="flex items-center justify-between max-w-[88rem] mx-auto">
         <div className="flex items-center gap-3">
-          <LogoIcon className="w-12 h-12" />
+          <LogoIcon className="h-16 w-auto" />
           <span className={`text-3xl font-medium tracking-tight transition-colors duration-300 ${
             scrolled ? "text-white" : "text-solar-dark"
           }`}>
@@ -183,7 +183,7 @@ export function HeroSection() {
             </div>
           </div>
           <div className="logo animate-float flex justify-center">
-            <LogoIcon className="w-32 h-32 md:w-56 md:h-56 lg:w-64 lg:h-64" />
+            <LogoIcon className="h-32 w-auto md:h-56 md:w-auto lg:h-64 lg:w-auto" />
           </div>
         </div>
         <div
