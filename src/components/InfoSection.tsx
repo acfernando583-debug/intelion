@@ -32,14 +32,14 @@ export function InfoSection() {
           <div className="relative h-full flex flex-col">
             <nav className="flex items-center justify-between px-6 py-5">
               <div className="flex items-center gap-3">
-                <img src="/images/logo.svg" alt="INTELION" className="w-8 h-8" />
+                <img src="/images/logo menu.png" alt="INTELION" className="w-8 h-8" />
                 <span className="text-xl font-medium tracking-tight text-white">INTELION</span>
               </div>
             </nav>
 
             <div className="flex-1 flex flex-col items-center justify-center px-8 py-12">
               <div className={`mb-8 ${inView ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: "0.1s" }}>
-                <img src="/images/logo.svg" alt="INTELION" className="w-20 h-20 mx-auto" />
+                <img src="/images/logo menu.png" alt="INTELION" className="w-20 h-20 mx-auto" />
               </div>
 
               <h1
