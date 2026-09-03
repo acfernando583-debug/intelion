@@ -2,13 +2,13 @@ import { useInViewAnimation } from "../hooks/useInViewAnimation";
 import { useParallax } from "../hooks/useParallax";
 
 const BACKERS = [
-  { name: "Risen", style: { fontFamily: "Arial, sans-serif", fontWeight: 700, letterSpacing: "0.02em", fontSize: "16px" } },
-  { name: "Canadian Solar", style: { fontFamily: "Arial, sans-serif", fontWeight: 800, letterSpacing: "0.04em", fontSize: "15px" } },
-  { name: "ZNShine Solar", style: { fontFamily: "Arial, sans-serif", fontWeight: 700, letterSpacing: "0.02em", fontSize: "14px" } },
-  { name: "Victron Energy", style: { fontFamily: "Arial, sans-serif", fontWeight: 700, letterSpacing: "0.03em", fontSize: "15px" } },
-  { name: "Dyness", style: { fontFamily: "Arial, sans-serif", fontWeight: 800, letterSpacing: "0.04em", fontSize: "16px" } },
-  { name: "Pylontech", style: { fontFamily: "Arial, sans-serif", fontWeight: 700, letterSpacing: "0.02em", fontSize: "15px" } },
-  { name: "Must", style: { fontFamily: "Arial, sans-serif", fontWeight: 800, letterSpacing: "0.05em", fontSize: "16px" } },
+  { name: "Risen", link: "https://es.risen.com/", style: { fontFamily: "Arial, sans-serif", fontWeight: 700, letterSpacing: "0.02em", fontSize: "20px" } },
+  { name: "Canadian Solar", link: "https://www.canadiansolar.com/", style: { fontFamily: "Arial, sans-serif", fontWeight: 800, letterSpacing: "0.04em", fontSize: "19px" } },
+  { name: "ZNShine Solar", link: "https://www.znshinesolar.com/", style: { fontFamily: "Arial, sans-serif", fontWeight: 700, letterSpacing: "0.02em", fontSize: "18px" } },
+  { name: "Victron Energy", link: "https://www.victronenergy.com/", style: { fontFamily: "Arial, sans-serif", fontWeight: 700, letterSpacing: "0.03em", fontSize: "19px" } },
+  { name: "Dyness", link: "https://dynesspower.com/", style: { fontFamily: "Arial, sans-serif", fontWeight: 800, letterSpacing: "0.04em", fontSize: "20px" } },
+  { name: "Pylontech", link: "https://www.pylontech.lat/", style: { fontFamily: "Arial, sans-serif", fontWeight: 700, letterSpacing: "0.02em", fontSize: "19px" } },
+  { name: "Must", link: "https://www.mustpower.com/", style: { fontFamily: "Arial, sans-serif", fontWeight: 800, letterSpacing: "0.05em", fontSize: "20px" } },
 ];
 
 export function BackedBySection() {
@@ -16,7 +16,7 @@ export function BackedBySection() {
   const parallaxStyle = useParallax(0.1);
 
   return (
-    <section ref={ref} className="bg-solar-gray px-6 py-20 relative overflow-hidden">
+    <section id="backed-by" ref={ref} className="bg-solar-gray px-6 py-20 relative overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
@@ -46,13 +46,16 @@ export function BackedBySection() {
         <div className="relative w-full overflow-hidden">
           <div className="backers-track">
             {[...BACKERS, ...BACKERS].map((backer, i) => (
-              <span
+              <a
                 key={i}
-                className="mx-10 shrink-0 text-solar-dark/60 whitespace-nowrap hover:text-solar-dark transition-all duration-300 hover:scale-105 inline-block"
+                href={backer.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mx-12 shrink-0 text-solar-dark/60 whitespace-nowrap hover:text-solar-dark transition-all duration-300 hover:scale-105 inline-block"
                 style={backer.style}
               >
                 {backer.name}
-              </span>
+              </a>
             ))}
           </div>
         </div>
