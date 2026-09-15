@@ -199,23 +199,19 @@ export function InfoSection() {
               className="mt-6 p-5 bg-gradient-to-br from-solar-yellow/15 to-solar-green/15 rounded-2xl border border-solar-yellow/30 backdrop-blur-sm animate-fade-in-up"
               style={{ animationDelay: "0.2s" }}
             >
-              <div className="flex items-start gap-4">
-                <div className="shrink-0 mt-0.5">
-                  {SUBSECTION_INFO[selectedInfo].icon}
-                </div>
-                <div className="text-center">
-                  {SUBSECTION_INFO[selectedInfo].image && (
-                    <img
-                      src={SUBSECTION_INFO[selectedInfo].image}
-                      alt={`Información ${selectedInfo}`}
-                      className="w-full max-w-sm rounded-xl mb-3 object-cover max-h-64 mx-auto cursor-pointer hover:opacity-90 transition-opacity"
-                      onClick={() => setModalOpen(true)}
-                    />
-                  )}
-                  <p className="text-white/70 text-xs md:text-sm leading-relaxed">
-                    {SUBSECTION_INFO[selectedInfo].text}
-                  </p>
-                </div>
+              <div className="flex flex-col items-center gap-4">
+                <div className="shrink-0">{SUBSECTION_INFO[selectedInfo].icon}</div>
+                {SUBSECTION_INFO[selectedInfo].image && (
+                  <img
+                    src={SUBSECTION_INFO[selectedInfo].image}
+                    alt={`Información ${selectedInfo}`}
+                    className="w-full max-w-xl max-h-[420px] rounded-xl object-cover mx-auto cursor-pointer hover:opacity-90 transition-opacity"
+                    onClick={() => setModalOpen(true)}
+                  />
+                )}
+                <p className="text-center text-white/70 text-[11px] md:text-xs leading-relaxed">
+                  {SUBSECTION_INFO[selectedInfo].text}
+                </p>
               </div>
             </div>
           )}
