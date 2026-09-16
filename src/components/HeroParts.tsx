@@ -222,7 +222,7 @@ export function HeroSection() {
             </div>
           </div>
           <div className="logo animate-float flex justify-center xl:mt-[-40px]">
-            <LogoIcon className="h-28 w-auto md:h-52 md:w-auto lg:h-60 lg:w-auto xl:h-44 xl:w-auto" />
+            <LogoIcon className="h-24 w-auto md:h-48 md:w-auto lg:h-56 lg:w-auto xl:h-40 xl:w-auto" />
           </div>
         </div>
         <div
