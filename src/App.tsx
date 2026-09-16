@@ -1,6 +1,6 @@
 import { Navbar, HeroSection, QuoteSection } from "./components/HeroParts";
 import { InfoSection } from "./components/InfoSection";
-import { VideoGallery } from "./components/VideoGallery";
+import { VehicleChargersGallery } from "./components/VideoGallery";
 import { BackedBySection } from "./components/BackedBySection";
 import { UseCasesSection } from "./components/UseCasesSection";
 import { PricingSection } from "./components/PricingSection";
@@ -20,7 +20,7 @@ export default function App() {
       </div>
       <QuoteSection />
       <InfoSection />
-      <VideoGallery />
+      <VehicleChargersGallery />
       <BackedBySection />
       <UseCasesSection />
       <PricingSection />

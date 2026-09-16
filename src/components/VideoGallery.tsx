@@ -1,20 +1,33 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useInViewAnimation } from "../hooks/useInViewAnimation";
-import { Play, X } from "lucide-react";
+import { X, ZoomIn } from "lucide-react";
 
-const VIDEOS = [
-  { src: "/videos/1.mp4", thumb: "/videos/1.mp4", title: "Proyecto 1" },
-  { src: "/videos/2.mp4", thumb: "/videos/2.mp4", title: "Proyecto 2" },
-  { src: "/videos/3.mp4", thumb: "/videos/3.mp4", title: "Proyecto 3" },
-  { src: "/videos/4.mp4", thumb: "/videos/4.mp4", title: "Proyecto 4" },
-  { src: "/videos/5.mp4", thumb: "/videos/5.mp4", title: "Proyecto 5" },
-  { src: "/videos/6.mp4", thumb: "/videos/6.mp4", title: "Proyecto 6" },
+const IMAGES = [
+  {
+    src: "/images/cargado%20vehiculo1.jpeg",
+    alt: "Cargador para vehículo 1",
+    title: "Cargador para vehículo 1",
+  },
+  {
+    src: "/images/cargado%20vehiculo2.jpeg",
+    alt: "Cargador para vehículo 2",
+    title: "Cargador para vehículo 2",
+  },
+  {
+    src: "/images/cargado%20vehiculo3.jpeg",
+    alt: "Cargador para vehículo 3",
+    title: "Cargador para vehículo 3",
+  },
+  {
+    src: "/images/cargado%20vehiculo4.jpeg",
+    alt: "Cargador para vehículo 4",
+    title: "Cargador para vehículo 4",
+  },
 ];
 
-export function VideoGallery() {
+export function VehicleChargersGallery() {
   const { ref, inView } = useInViewAnimation();
   const [active, setActive] = useState<number | null>(null);
-  const [loadedThumbs, setLoadedThumbs] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     if (active === null) return;
@@ -25,7 +38,7 @@ export function VideoGallery() {
   }, [active]);
 
   return (
-    <section id="video-gallery" ref={ref} style={{ display: 'none' }} className="bg-solar-dark py-24 px-6 relative overflow-hidden">
+    <section id="vehicle-chargers" ref={ref} className="bg-solar-dark py-24 px-6 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-20">
         <div
           className="absolute inset-0"
@@ -42,56 +55,44 @@ export function VideoGallery() {
           style={{ animationDelay: "0.1s" }}
         >
           <p className="text-solar-yellow text-xs font-semibold tracking-wider uppercase mb-4">
-            Galería
+            Movilidad eléctrica
           </p>
           <h2
             className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-tight"
             style={{ fontFamily: "Noto Sans, system-ui, sans-serif" }}
           >
-            Proyectos en <span className="text-gradient">video</span>
+            Cargadores para <span className="text-gradient">vehículos</span>
           </h2>
           <p className="text-white/60 mt-4 max-w-xl mx-auto text-base md:text-lg leading-relaxed">
-            Explora nuestros trabajos instalados y conoce de primera mano la calidad y el impacto de nuestras soluciones solares.
+            Conoce nuestras soluciones de carga para vehículos y su integración con sistemas de energía solar eficientes y confiables.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {VIDEOS.map((video, idx) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {IMAGES.map((image, idx) => (
             <button
-              key={video.src}
+              key={image.src}
               onClick={() => setActive(idx)}
-              className={`group relative rounded-3xl overflow-hidden aspect-video text-left transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl ${
+              aria-label={`Ampliar ${image.title}`}
+              className={`group relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 text-left transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl ${
                 inView ? "animate-fade-in-up" : "opacity-0"
               }`}
               style={{ animationDelay: `${0.15 + idx * 0.08}s` }}
             >
-              <video
-                src={video.thumb}
-                muted
-                playsInline
-                preload="metadata"
-                onLoadedData={() =>
-                  setLoadedThumbs((prev) => {
-                    const next = new Set(prev);
-                    next.add(idx);
-                    return next;
-                  })
-                }
-                className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${
-                  loadedThumbs.has(idx) ? "opacity-100" : "opacity-0"
-                }`}
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-64 sm:h-72 object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
               />
-              {!loadedThumbs.has(idx) && (
-                <div className="absolute inset-0 bg-solar-dark/40 animate-pulse" />
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-solar-dark/80 via-solar-dark/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-white/20">
-                  <Play className="w-6 h-6 text-white ml-1" fill="white" />
+              <div className="absolute inset-0 bg-gradient-to-t from-solar-dark/95 via-solar-dark/25 to-transparent opacity-85 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="w-14 h-14 rounded-full bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center">
+                  <ZoomIn className="w-6 h-6 text-white" />
                 </div>
               </div>
               <div className="absolute bottom-4 left-4 right-4">
-                <p className="text-white text-sm font-medium">{video.title}</p>
+                <p className="text-white text-sm font-medium">{image.title}</p>
               </div>
             </button>
           ))}
@@ -102,28 +103,27 @@ export function VideoGallery() {
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4"
           onClick={() => setActive(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={IMAGES[active].title}
         >
           <button
             onClick={() => setActive(null)}
             className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all"
+            aria-label="Cerrar imagen"
           >
             <X className="w-5 h-5" />
           </button>
-          <div
-            className="relative w-full max-w-5xl aspect-video rounded-2xl overflow-hidden shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <video
-              key={active}
-              autoPlay
-              loop
-              muted
-              playsInline
-              controls
-              className="w-full h-full object-contain bg-black"
-            >
-              <source src={VIDEOS[active].src} type="video/mp4" />
-            </video>
+          <div className="relative w-full max-w-5xl">
+            <img
+              key={IMAGES[active].src}
+              src={IMAGES[active].src}
+              alt={IMAGES[active].alt}
+              className="w-full h-auto max-h-[75vh] object-contain rounded-2xl"
+            />
+            <p className="text-white/85 text-sm md:text-base leading-relaxed mt-4">
+              {IMAGES[active].title}
+            </p>
           </div>
         </div>
       )}
