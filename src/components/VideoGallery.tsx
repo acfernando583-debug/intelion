@@ -4,22 +4,22 @@ import { X, ZoomIn } from "lucide-react";
 
 const IMAGES = [
   {
-    src: "/images/cargado%20vehiculo1.jpeg",
+    src: "/images/cargado1.jpeg",
     alt: "Cargador para vehículo 1",
     title: "Cargador Suntree",
   },
   {
-    src: "/images/cargado%20vehiculo2.jpeg",
+    src: "/images/cargado2.jpeg",
     alt: "Cargador para vehículo 2",
     title: "Cargador inteligente con RFID y APP",
   },
   {
-    src: "/images/cargado%20vehiculo3.jpeg",
+    src: "/images/cargado3.jpeg",
     alt: "Cargador para vehículo 3",
     title: "Cargador CA 7–22 kW con OCPP",
   },
   {
-    src: "/images/cargado%20vehiculo4.jpeg",
+    src: "/images/cargado4.jpeg",
     alt: "Cargador para vehículo 4",
     title: "Cargador CA monofásico 7 kW HCA G2",
   },
